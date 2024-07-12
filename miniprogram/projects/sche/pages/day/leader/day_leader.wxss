@@ -1,0 +1,102 @@
+@import "../../../style/skin.wxss";
+
+.main {
+	padding: 10rpx 14rpx;
+}
+
+.date {
+	width: 100%;
+	background-color: var(--projectColorLight);
+	color: #fff;
+	border-radius: 10rpx;
+	padding: 10rpx 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10rpx;
+}
+
+.list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-top: 4rpx;
+	margin-bottom: 100rpx;
+}
+
+.table {
+	display: flex;
+	margin-bottom: 2px;
+}
+
+.tr {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	background: #fff;
+}
+
+.th_1,
+.th_2,
+.th_3 {
+	/* 公有的属性 */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	/* 自动换行 */
+	text-align: center;
+	/* 文本居中 */
+	justify-content: center;
+	/* 主轴居中 */
+	align-items: center;
+	/* 交叉轴居中 */
+	border-top: 2rpx solid var(--projectColorLight);
+	/* 单元格上线框 */
+	border-bottom: 2rpx solid var(--projectColorLight);
+	/* 单元格下线框 */
+	border-left: 2rpx solid var(--projectColorLight);
+	/* 单元格左线框 */
+	/* border-right: 2rpx solid #dadada; */
+	/* 单元格右线框 */
+}
+
+.th_1 {
+	width: 120rpx;
+	font-size: 28rpx;
+	color: #000;
+}
+
+.th_2 {
+	width: 120rpx;
+	font-size: 24rpx;
+}
+
+.th_3 {
+	flex: 1;
+	font-size: 24rpx;
+	padding: 10rpx 20rpx;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	border-right: 2rpx solid var(--projectColorLight);
+	min-height: 70rpx;
+	color: #666;
+}
+
+.th_3>text {
+	width: 100%;
+	text-align: left;
+	line-height: 1.3;
+}
+
+.th_3.detail>view {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.th_3.detail>view>text {
+	width: 100%;
+	text-align: left;
+}

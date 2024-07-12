@@ -1,0 +1,6 @@
+@import "../../../../../style/public/comm_box_list.wxss";
+@import "../../../style/skin.wxss"; 
+
+.shadow-project {
+	box-shadow: unset;
+}

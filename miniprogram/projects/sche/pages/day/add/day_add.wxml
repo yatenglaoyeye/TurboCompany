@@ -1,0 +1,20 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<view wx:if="{{isLoad}}" class="main">
+	
+	<include src="./day_form.wxml" />
+
+	<view class="oprt">
+		<button bindtap="bindSubmitTap" class="btn-base btn-project">提交</button> 
+		<button bindtap="bindClearTap" class="btn-base btn-project bg-orange light">清空未来动态<text class="text-s">({{formDays[0]}}之后</text>)</button> 
+	</view> 
+ 
+
+	<view style="height: 100rpx;"></view>
+</view>
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'day_add',returnHome:false}}" />
+</block>

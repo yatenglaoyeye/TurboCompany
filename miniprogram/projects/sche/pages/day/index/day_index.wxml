@@ -1,0 +1,57 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project">
+</view>
+
+<block wx:if="{{isLoad&&isLogin}}">
+	<view class="main">
+		<view class="plan-date">
+			<cmpt-calendar id="c1" mode="one" hasDays="{{hasDays}}" bind:click="bindClickCmpt" bind:monthChange="bindMonthChangeCmpt" />
+		</view>
+
+		<view class="list padding-project">
+			<view class="day-line" wx:if="{{day}}"><text class="icon-time margin-right-xxs"></text>{{day}}</view>
+			<view wx:if="{{list===null}}" class="load loading text-l text-grey"></view>
+			<text wx:elif="{{list.length==0}}" class="no-project icon-emoji text-l text-grey"> 本日没有动态~</text>
+			<view class="item card-project shadow-project" wx:for="{{list}}" wx:key="key">
+
+				<view wx:if="{{item.DAY_TYPE==0}}" class="type text-blue"><text class="icon-title"></text>请假</view>
+				<view wx:elif="{{item.DAY_TYPE==1}}" class="type text-red"><text class="icon-title"></text>出差</view>
+				<view wx:elif="{{item.DAY_TYPE==2}}" class="type text-green"><text class="icon-title"></text>在公司</view>
+				<view wx:elif="{{item.DAY_TYPE==9}}" class="type text-orange"><text class="icon-title"></text>其他</view>
+
+				<block wx:if="{{item.DAY_TYPE==0}}">
+					<view class="desc">
+						<text class="margin-bottom-xs">{{item.DAY_METHOD}}</text> 
+					</view>
+					<view class="desc"> 
+						备注：{{item.DAY_DESC||'未填'}}
+					</view>
+				</block>
+
+				<block wx:if="{{item.DAY_TYPE==1}}">
+					<view class="desc">
+						<text class="icon-location">{{item.DAY_AREA}} </text>
+					</view>
+					<view class="desc">
+						出差事由：{{item.DAY_DESC}} 
+					</view>
+				</block>
+				<view class="desc" wx:if="{{(item.DAY_TYPE==2 || item.DAY_TYPE==9) && item.DAY_DESC}}">
+					<text>备注：{{item.DAY_DESC||'未填'}}</text>
+				</view>
+				<view class="oprt">
+					<view bindtap="url" data-url="../edit/day_edit?id={{item._id}}" class="bg-green light margin-right-s"><text class="icon-delete margin-right-xxs"></text>修改</view>
+					<view bindtap="bindDelTap" data-id="{{item._id}}" class="bg-red light"><text class="icon-delete margin-right-xxs"></text>删除</view>
+				</view>
+
+			</view>
+
+		</view>
+	</view>
+	<view style="height: 150rpx;"></view>
+
+	<view class="fixed-btn" bind:tap="url" data-url="../add/day_add" data-type="relaunch">
+		<text class="icon-roundaddfill ix text-red"></text>
+		<text class="txt text-red">填报</text>
+	</view>
+</block>

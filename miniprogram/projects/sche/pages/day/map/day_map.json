@@ -1,0 +1,8 @@
+{
+	"usingComponents": { 
+		"echarts-cmpt":"../status/echarts/echarts_cmpt",
+		"cmpt-calendar": "../../../cmpts/calendar_comm/calendar_comm_cmpt"
+	},
+	"enablePullDownRefresh": true,  
+	"navigationBarTitleText": "出差地图"
+}

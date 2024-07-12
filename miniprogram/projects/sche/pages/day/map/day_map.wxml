@@ -1,0 +1,67 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main">
+		<view class="date" bind:tap="bindOpenCalModalTap">
+			{{dateShow}} <text class="icon-triangledownfill" style="font-size: 70rpx;"></text>
+		</view>
+
+		<view class="info">
+			<view class="line1" bind:tap="bindOpenDeptModalTap">
+				<view class="left text-cut">{{dept}} ({{dataInfo.total}}人)</view>
+				<view class="right text-grey">请选择部门<text class="icon-triangledownfill" style="font-size: 40rpx;"></text></view>
+			</view> 
+		</view>
+
+		<view class="chart-bg" hidden="{{type!=1}}">
+			<echarts-cmpt bind:touchmove="" bind:touchstart="" bind:touchend="" hidden="{{showCalModal||showDeptModal}}" id="mychart" class="mychart" canvas-id="mychart"></echarts-cmpt>
+		</view>
+
+		<view class="user-list">
+			<view class="item" wx:for="{{dataUserData}}" wx:key="key" bind:tap="url" data-url="../list/day_list?date={{date}}&dept={{item.key}}&type={{type}}">
+				<view class="left text-cut"><text class="icon-peoplefill margin-right-xxs" style="color: #ccc;"></text>{{item.key}}</view>
+				<view wx:if="{{type==999}}" class="right">{{item.val}}人</view>
+				<view wx:else class="right">{{item.cnt}}<text class="margin-left-xxs margin-right-xxs">/</text>{{item.val}}</view>
+			</view>
+		</view>
+	</view>
+
+	<view style="height: 50rpx;"></view>
+
+	<!-- 日历对话窗口 begin -->
+	<view class="modal show" wx:if="{{showCalModal}}">
+		<view class="dialog padding-bottom">
+			<view class="padding-l">
+				<cmpt-calendar oneDoDay="{{date}}" selectTimeout="{{true}}" mode="one" bind:click="bindCalClickCmpt" />
+
+			</view>
+			<view class="bar bg-white justify-end">
+				<view class="action">
+					<button class="btn line-blue text-blue" bindtap="bindCloseCalModalTap">关闭</button>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 日历对话窗口 end -->
+
+	<!-- 部门对话窗口 begin -->
+	<view class="modal show" wx:if="{{showDeptModal}}" >
+		<view class="dialog">
+			<view class="bar bg-white justify-end">
+				<view class="content">部门</view>
+
+			</view>
+			<view class="dept-list">
+				<text class="item {{dept==item?'cur':''}}" bind:tap="bindDeptTap" data-dept="{{item}}" wx:for="{{deptList}}" wx:key="key">{{item}}</text>
+			</view>
+			<view class="bar bg-white justify-end">
+				<view class="action">
+					<button class="btn bg-blue margin-left light" bindtap="bindCloseDeptModalTap">关闭</button>
+
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 部门对话窗口 end -->
+</block>

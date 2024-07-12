@@ -1,0 +1,99 @@
+@import "../../../style/skin.wxss";
+
+
+.main {
+	padding: 0 0 20rpx;
+}
+
+.main .plan-date {
+	width: 100%;
+	/*
+	position: sticky;
+	top: 0;*/
+	z-index: 999;
+	box-shadow: var(--ShadowSize) var(--greyShadow);
+}
+
+.main .list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 30rpx 20rpx;
+}
+
+.main .list .item {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx;
+	background-color: #fff;
+	margin-bottom: 30rpx;
+	border-radius: 10rpx;
+	overflow: hidden;
+	min-height: 80rpx;
+	position: relative;
+	border: 2rpx solid #eee
+}
+
+.main .list .item .type {
+	width: 100%;
+	font-size: 28rpx;
+	padding-bottom: 14rpx;
+}
+
+.main .list .item .desc {
+	width: 100%;
+	font-size: 24rpx;
+	padding: 10rpx 10rpx 10rpx;
+	color: #666;
+	border-top: 2rpx dotted #ccc;
+	display: flex;
+	flex-direction: column;
+}
+
+.main .list .item .oprt {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.main .list .item .oprt>view {
+	padding: 8rpx 30rpx;
+	border-radius: 6rpx;
+	font-size: 24rpx;
+}
+
+.fixed-btn {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	bottom: 30rpx;
+	right: 0rpx;
+	align-items: center;
+	padding: 20rpx;
+	z-index: 999;
+}
+
+.fixed-btn .ix {
+	font-size: 60rpx;
+}
+
+.fixed-btn .txt {
+	font-size: 28rpx;
+}
+
+.modal-line {
+	width: 100%;
+	padding: 10rpx 10rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.day-line {
+	width: 100%;
+	padding: 0rpx 0rpx 20rpx;
+	font-size: 28rpx;
+}

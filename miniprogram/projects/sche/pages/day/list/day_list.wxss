@@ -1,0 +1,101 @@
+@import "../../../style/skin.wxss";
+
+.main {
+	padding: 10rpx 14rpx;
+}
+
+.list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 10rpx;
+}
+
+.list .item {
+	width: 100%;
+	background-color: #fff;
+	margin-bottom: 20rpx;
+	border-radius: 20rpx;
+	padding: 20rpx 20rpx;
+	display: flex;
+	overflow: hidden;
+	display: flex;
+	align-items: flex-start;
+	position: relative;
+}
+
+.list .item  .type {
+	font-size: 24rpx;
+	position: absolute;
+	top: 20rpx;
+	right: 20rpx;
+	padding: 2rpx 16rpx;
+	background-color: #ccc;
+	color: #fff;
+	border-radius: 8rpx;
+}
+
+.list .item .left {
+	margin-right: 2rpx;
+	padding-top: 4rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.list .item .left image {
+	width: 120rpx;
+	height: 150rpx;
+	border-radius: 10rpx;
+} 
+
+.list .item .right {
+	flex: 1;
+	display: flex;
+	padding: 0 20rpx;
+	flex-direction: column;
+}
+
+.list .item .right .line-title {
+	color: #333;
+	font-size: 30rpx;
+	margin-bottom: 10rpx;
+	display: flex;
+	align-items: center;
+	border-bottom: 2rpx dashed #ddd;
+	padding-bottom: 10rpx;
+}
+
+.list .item .right .line-dept {
+	color: #666;
+	font-size: 24rpx;
+	margin-bottom: 10rpx;
+}
+
+.list .item .right .line-title .level {
+	font-size: 22rpx;
+	margin-left: 10rpx;
+	padding: 2rpx 8rpx;
+	border-radius: 4rpx;
+}
+
+.list .item .right .line1 {
+	color: #999;
+	font-size: 24rpx;
+	margin-bottom: 2rpx;
+}
+
+.list .item .phone {
+	position: absolute;
+	bottom: 10rpx;
+	right: 10rpx;
+	width: 100rpx;
+	display: flex;
+	align-items: center;
+	font-size: 42rpx;
+	justify-content: flex-end; 
+	padding-right: 0rpx;
+	margin-top: 60rpx;
+	color:#eee;
+}

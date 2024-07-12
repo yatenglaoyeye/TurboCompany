@@ -1,0 +1,54 @@
+@import "../../../style/skin.wxss";
+
+page {
+	background-image: unset
+}
+
+.main {
+	width: 100%;
+	padding: 10rpx 115rpx;
+}
+
+.top {
+	width: 100%;
+}
+
+.top image {
+	width: 100%;
+}
+
+.list {
+	position: relative;
+	margin-top: -100rpx;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 40rpx 0;
+}
+
+.list .item {
+	width: calc((100% - 30rpx) / 2);
+	background-color: #fff;
+	background-image: linear-gradient(180deg, #D9E5FB, #fff);
+	border-radius: 20rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 55rpx 0;
+	margin-bottom: 30rpx;
+}
+
+.list .item:nth-child(2n+1) {
+	margin-right: 30rpx;
+}
+
+.list .item image {
+	width: 70rpx;
+	height: 70rpx;
+}
+
+.list .item .title {
+	font-size: 28rpx; 
+	margin-top: 10rpx;
+}

@@ -1,0 +1,43 @@
+<view class="top">
+	<image mode="widthFix" src="../../../images/home.jpg" class="loading" />
+</view>
+<view class="main">
+	<view class="list">
+		<view class="item" bindtap="url" data-type="relaunch" data-url="../../news/index/news_index">
+			<image mode="aspectFill" src="../../../images/menu/notice.png" />
+			<view class="title">通知公告</view>
+		</view>
+
+		<view class="item" bindtap="url" data-url="../../day/leader/day_leader">
+			<image mode="aspectFill" src="../../../images/menu/rili.png" />
+			<view class="title">领导动态</view>
+		</view>
+
+		<view class="item" bindtap="url" data-type="relaunch" data-url="../../day/status/day_status">
+			<image mode="aspectFill" src="../../../images/menu/laoshi.png" />
+			<view class="title">员工动态</view>
+		</view>
+		<view class="item" bindtap="url" data-url="../../day/map/day_map">
+			<image mode="aspectFill" src="../../../images/menu/kechen.png" />
+			<view class="title">出差地图</view>
+		</view>
+
+		<view class="item" bindtap="url" data-type="relaunch" data-url="../../day/add/day_add">
+			<image mode="aspectFill" src="../../../images/menu/add.png" />
+			<view class="title">上报动态</view>
+		</view>
+
+		<view class="item" bindtap="url" data-url="../../day/index/day_index">
+			<image mode="aspectFill" src="../../../images/menu/my.png" />
+			<view class="title">我的动态</view>
+		</view>
+
+
+	</view>
+</view>
+
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'home_index',returnHome:false}}" />
+</block>

@@ -1,0 +1,13 @@
+ function indexOf(data, key) {
+ 	return data.indexOf(key);
+ }
+
+ function includes(data, key) {
+ 	return data.indexOf(key) > -1 ? true : false;
+ }
+
+ module.exports = {
+ 	indexOf: indexOf,
+ 	includes: includes
+ };
+ module.exports.msg = "hello tools";

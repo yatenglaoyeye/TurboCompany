@@ -1,0 +1,142 @@
+<view wx:if="{{!isEdit}}" class="form-box card-project">
+
+	<view id="formDate" class="form-group" bind:tap="bindAddShowTap">
+		<view class="title must">请选择日期区间</view>
+		<view wx:if="{{formDays.length>0&&formDays[0]==formDays[1]}}">{{formDays[0]}}<text class="icon-right text-grey"></text></view>
+		<view wx:elif="{{formDays.length>0}}">{{formDays[0]}} ~ {{formDays[1]}}<text class="icon-right text-grey"></text></view>
+		<view wx:else>选择日期<text class="icon-right text-grey"></text></view>
+	</view>
+</view>
+<view class="sche-title" wx:else>
+	{{formDays[0]}}
+</view>
+
+<!--在公司 begin-->
+<view class="plan-form">
+	<view class="item">
+		<view class="line1">
+			<view class="left text-green"><text class="icon-title"></text>在公司</view>
+			<view class="right">
+				<switch bindchange="bindTypeChange" data-type="2" class="green sm" checked="{{checkType2}}">
+				</switch>
+			</view>
+		</view>
+		<view class="line2">
+			<view class="left"><text>备注</text></view>
+			<view class="right">
+				<text class="limit">{{formDesc2.length}}/500</text>
+				<textarea disabled="{{!checkType2}}" class="{{!checkType2?'disabled':''}}" placeholder-class="{{!checkType2?'disabled':'phc1'}}" placeholder="请输入" style="min-height:50rpx" model:value="{{formDesc2}}" maxlength="500" focus="{{formDesc2Focus}}" auto-height="true"></textarea>
+			</view>
+		</view>
+	</view>
+</view>
+<!--在公司 end-->
+
+<!--出差 begin-->
+<view class="plan-form">
+	<view class="item">
+		<view class="line1">
+			<view class="left text-red"><text class="icon-title"></text>出差</view>
+			<view class="right">
+				<switch bindchange="bindTypeChange" data-type="1" class="red sm" checked="{{checkType1}}">
+				</switch>
+			</view>
+		</view>
+		<view class="line2" id="formArea">
+			<view class="left"><text><text class="text-red">*</text>出差地点</text></view>
+			<view class="right" style="align-items: center;justify-content:space-between;">
+
+				<picker disabled="{{!checkType1}}" class="picker-base {{!checkType1?'disabled':''}}" mode="region" level="city" bindchange="bindAreaChange" value="{{formArea}}">
+					<view wx:if="{{formArea && formArea.length==2}}" class="picker-select">
+						{{formArea}} <text class="icon-right text-grey"></text>
+					</view>
+					<view wx:else class="picker-select">
+						省,区,市 <text class="icon-right text-grey  {{!checkType1?'disabled':''}}"></text>
+					</view>
+				</picker>
+
+
+			</view>
+		</view>
+		<view class="line2">
+			<view class="left"><text><text class="text-red">*</text>出差事由</text></view>
+			<view class="right">
+				<text class="limit">{{formDesc1.length}}/500</text>
+				<textarea disabled="{{!checkType1}}" class="{{!checkType1?'disabled':''}}" placeholder-class="{{!checkType1?'disabled':'phc1'}}" placeholder="请输入" style="min-height:50rpx" model:value="{{formDesc1}}" maxlength="500" focus="{{formDesc1Focus}}" auto-height="true"></textarea>
+			</view>
+		</view>
+	</view>
+</view>
+<!--出差 end-->
+
+<!--请假 begin-->
+<view class="plan-form">
+	<view class="item">
+		<view class="line1">
+			<view class="left text-blue"><text class="icon-title"></text>请假</view>
+			<view class="right">
+				<switch bindchange="bindTypeChange" data-type="0" class="blue sm" checked="{{checkType0}}">
+				</switch>
+			</view>
+		</view>
+		<view class="line2" id="formMethod">
+			<view class="left"><text><text class="text-red">*</text>请假类型</text></view>
+			<view class="right" style="align-items: center;">
+				<cmpt-picker disabled="{{!checkType0}}" mark="checkMethod" bind:select="url" data-type="picker" data-item="formMethod" item="{{formMethod}}" sourceDataStr="陪护假,哺乳假,产假,婚假,丧假,探亲假,计划生育假,年休假,病假,事假,其他" /> <text class="icon-right text-grey {{!checkType0?'disabled':''}}"></text>
+			</view>
+		</view>
+
+		<view class="line2">
+			<view class="left"><text>备注</text></view>
+			<view class="right">
+				<text class="limit">{{formDesc0.length}}/500</text>
+				<textarea disabled="{{!checkType0}}" class="{{!checkType0?'disabled':''}}" placeholder-class="{{!checkType0?'disabled':'phc1'}}" placeholder="请输入" style="min-height:50rpx" model:value="{{formDesc0}}" maxlength="500" focus="{{formDesc0Focus}}" auto-height="true"></textarea>
+			</view>
+		</view>
+
+	</view>
+</view>
+<!--请假 end-->
+
+
+
+
+<!--其他 begin-->
+<view class="plan-form">
+	<view class="item">
+		<view class="line1">
+			<view class="left text-orange"><text class="icon-title"></text>其他</view>
+			<view class="right">
+				<switch bindchange="bindTypeChange" data-type="9" class="orange sm" checked="{{checkType9}}">
+				</switch>
+			</view>
+		</view>
+		<view class="line2">
+			<view class="left"><text>备注</text></view>
+			<view class="right">
+				<text class="limit">{{formDesc9.length}}/500</text>
+				<textarea disabled="{{!checkType9}}" class="{{!checkType9?'disabled':''}}" placeholder-class="{{!checkType9?'disabled':'phc1'}}" placeholder="请输入" style="min-height:50rpx" model:value="{{formDesc9}}" maxlength="500" focus="{{formDesc9Focus}}" auto-height="true"></textarea>
+			</view>
+		</view>
+	</view>
+</view>
+<!--其他 end-->
+
+
+
+<!-- 对话窗口 begin -->
+<view class="modal show" wx:if="{{showModal}}">
+	<view class="dialog padding-bottom">
+		<view class="padding-l">
+			<cmpt-calendar id="c2" mode="continue" selectTimeout="{{true}}" continueDoDay="{{formDays}}" bind:click="bindClickCmpt2" bind:monthChange="bindMonthChangeCmpt2" />
+
+		</view>
+		<view class="bar bg-white justify-end">
+			<view class="action">
+				<button class="btn line-blue text-blue" bindtap="bindCloseTap">取消</button>
+				<button class="btn bg-blue margin-left" bindtap="bindSetDaysTap">确定</button>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 对话窗口 end -->

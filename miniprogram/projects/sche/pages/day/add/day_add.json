@@ -1,0 +1,9 @@
+{
+	"usingComponents": { 
+		"cmpt-calendar": "../../../cmpts/calendar_comm/calendar_comm_cmpt",
+		"cmpt-picker": "/cmpts/public/picker/picker_cmpt", 
+		"cmpt-radio": "/cmpts/public/radio/radio_cmpt" 
+	},
+	"enablePullDownRefresh": true,  
+	"navigationBarTitleText": "动态上报"
+}

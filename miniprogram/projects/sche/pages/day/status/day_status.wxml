@@ -1,0 +1,118 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main">
+		<view class="date" bind:tap="bindOpenCalModalTap">
+			{{dateShow}} <text class="icon-triangledownfill" style="font-size: 70rpx;"></text>
+		</view>
+
+		<view class="info">
+			<view class="line1" bind:tap="bindOpenDeptModalTap">
+				<view class="left text-cut">{{dept}} ({{dataInfo.total}}人)</view>
+				<view class="right text-grey">请选择部门<text class="icon-triangledownfill" style="font-size: 40rpx;"></text></view>
+			</view>
+			<view class="line2">
+				<view bind:tap="bindTypeTap" data-type="0" class="item" style="width: {{dataInfo.totalType0Per<12?12:dataInfo.totalType0Per}}%;">
+					<text class="num"> {{dataInfo.totalType0}}人</text>
+					<text class="per"> {{dataInfo.totalType0Per}}%</text>
+					<text class="box bg-blue">请假</text>
+				</view>
+				<view bind:tap="bindTypeTap" data-type="1" class="item" style="width:{{dataInfo.totalType1Per<12?12:dataInfo.totalType1Per}}%;">
+					<text class="num"> {{dataInfo.totalType1}}人</text>
+					<text class="per"> {{dataInfo.totalType1Per}}%</text>
+					<text class="box bg-red">出差</text>
+				</view>
+				<view bind:tap="bindTypeTap" data-type="2" class="item" style="width: {{dataInfo.totalType2Per<12?12:dataInfo.totalType2Per}}%;">
+					<text class="num"> {{dataInfo.totalType2}}人</text>
+					<text class="per"> {{dataInfo.totalType2Per}}%</text>
+					<text class="box bg-green">公司</text>
+				</view>
+				<view bind:tap="bindTypeTap" data-type="9" class="item" style="width: {{dataInfo.totalType9Per<12?12:dataInfo.totalType9Per}}%;">
+					<text class="num"> {{dataInfo.totalType9}}人</text>
+					<text class="per"> {{dataInfo.totalType9Per}}%</text>
+					<text class="box bg-orange">其他</text>
+				</view>
+				<view bind:tap="bindTypeTap" data-type="99" wx:if="{{dataInfo.totalTypeNull>0}}" class="item" style="flex:1">
+					<text class="num"> {{dataInfo.totalTypeNull}}人</text>
+					<text class="per"> {{dataInfo.totalTypeNullPer}}%</text>
+					<text class="box bg-grey">未填</text>
+				</view>
+			</view>
+			<view class="line3">
+				<view class="item" style="width: {{dataInfo.totalType0Per<12?12:dataInfo.totalType0Per}}%;">
+					<text class="icon-triangleupfill {{type==0?'text-blue':''}}" />
+				</view>
+				<view class="item" style="width:{{dataInfo.totalType1Per<12?12:dataInfo.totalType1Per}}%;">
+					<text class="icon-triangleupfill {{type==1?'text-red':''}}" />
+				</view>
+				<view class="item" style="width: {{dataInfo.totalType2Per<12?12:dataInfo.totalType2Per}}%;">
+					<text class="icon-triangleupfill {{type==2?'text-green':''}}" />
+				</view>
+				<view class="item" style="width: {{dataInfo.totalType9Per<12?12:dataInfo.totalType9Per}}%;">
+					<text class="icon-triangleupfill {{type==9?'text-orange':''}}" />
+				</view>
+				<view wx:if="{{dataInfo.totalTypeNull>0}}" class="item" style="flex:1">
+					<text class="icon-triangleupfill {{type==99?'text-grey':''}}" />
+				</view>
+			</view>
+			<view class="line4">点击查看详情 <text style="font-size: 50rpx;" class="icon-triangleupfill" /></view>
+
+		</view>
+
+		<view class="chart-bg" hidden="{{type!=1}}">
+			<echarts-cmpt bind:touchmove="" bind:touchstart="" bind:touchend="" hidden="{{showCalModal||showDeptModal}}" id="mychart" class="mychart" canvas-id="mychart"></echarts-cmpt>
+		</view>
+
+		<view class="user-list">
+			<view class="item" wx:for="{{dataUserData}}" wx:key="key" bind:tap="url" data-url="../list/day_list?date={{date}}&dept={{item.key}}&type={{type}}">
+				<view class="left text-cut"><text class="icon-peoplefill margin-right-xxs" style="color: #ccc;"></text>{{item.key}}</view>
+				<view wx:if="{{type==999}}" class="right">{{item.val}}人</view>
+				<view wx:else class="right">{{item.cnt}}<text class="margin-left-xxs margin-right-xxs">/</text>{{item.val}}</view>
+			</view>
+		</view>
+	</view>
+
+	<view style="height: 50rpx;"></view>
+
+	<!-- 日历对话窗口 begin -->
+	<view class="modal show" wx:if="{{showCalModal}}">
+		<view class="dialog padding-bottom">
+			<view class="padding-l">
+				<cmpt-calendar oneDoDay="{{date}}" selectTimeout="{{true}}" mode="one" bind:click="bindCalClickCmpt" />
+
+			</view>
+			<view class="bar bg-white justify-end">
+				<view class="action">
+					<button class="btn line-blue text-blue" bindtap="bindCloseCalModalTap">关闭</button>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 日历对话窗口 end -->
+
+	<!-- 部门对话窗口 begin -->
+	<view class="modal show" wx:if="{{showDeptModal}}">
+		<view class="dialog">
+			<view class="bar bg-white justify-end">
+				<view class="content">部门</view>
+
+			</view>
+			<view class="dept-list">
+				<text class="item {{dept==item?'cur':''}}" bind:tap="bindDeptTap" data-dept="{{item}}" wx:for="{{deptList}}" wx:key="key">{{item}}</text>
+			</view>
+			<view class="bar bg-white justify-end">
+				<view class="action">
+					<button class="btn bg-blue margin-left light" bindtap="bindCloseDeptModalTap">关闭</button>
+
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 部门对话窗口 end -->
+
+	<block wx:if="{{skin.IS_SUB}}">
+		<import src="../../tpls/menu_tpl.wxml" />
+		<template is="menuTpl" data="{{curMenu:'day_status',returnHome:false}}" />
+	</block>
+</block>

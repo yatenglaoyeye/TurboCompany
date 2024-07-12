@@ -1,0 +1,55 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main">
+
+		<view class="list">
+			<view class="text-center" wx:if="{{list.length==0}}">暂无记录</view>
+			<view class="item" wx:for="{{list}}" wx:key="ky">
+				<text wx:if="{{item.DAY_TYPE==0}}" class="type bg-blue light">请假</text>
+				<text wx:elif="{{item.DAY_TYPE==1}}" class="type bg-red light">出差</text>
+				<text wx:elif="{{item.DAY_TYPE==2}}" class="type bg-green light">在公司</text>
+				<text wx:elif="{{item.DAY_TYPE==9}}" class="type bg-orange light">其他</text>
+				<text wx:else class="type bg-grey light">未填报</text>
+				<view class="left">
+					<image src="{{item.user.USER_PIC}}" class="loading" mode="aspectFill" lazy-load="{{true}}" />
+				</view>
+				<view class="right">
+					<view class="line-title">
+						<text class="t">{{item.user.USER_NAME}}</text>
+						<text wx:if="{{item.user.USER_LEVEL==1}}" class="level bg-orange light">领导</text>
+					</view>
+					<view class="line-dept">{{item.user.USER_OBJ.dept}}</view>
+					<block wx:if="{{item.DAY_TYPE==0}}">
+						<view class="line1">{{item.DAY_METHOD}}</view>
+						<view class="line1">备注：{{item.DAY_DESC||'未填'}}</view>
+					</block>
+
+					<block wx:elif="{{item.DAY_TYPE==1}}">
+						<view class="line1">出差地点：{{item.DAY_AREA}}</view>
+						<view class="line1">出差事由：{{item.DAY_DESC}}</view>
+					</block>
+
+					<block wx:elif="{{item.DAY_TYPE==2}}">
+						<view class="line1">在公司 </view>
+						<view wx:if="{{item.DAY_DESC}}" class="line1">备注：{{item.DAY_DESC||'未填'}}</view>
+					</block>
+
+					<block wx:elif="{{item.DAY_TYPE==9}}">
+						<view class="line1 text-orange">其他 </view>
+						<view wx:if="{{item.DAY_DESC}}" class="line1">备注：{{item.DAY_DESC||'未填'}}</view>
+					</block>
+
+					<view wx:else class="line1 text-grey">未填报</view>
+
+				</view>
+				<view bind:tap="url" data-type="phone" data-url="{{item.user.USER_MOBILE}}" class="phone"><text class="icon-phone"></text></view>
+			</view>
+		</view>
+
+		<view style="height:100rpx"></view>
+	</view>
+
+
+</block>

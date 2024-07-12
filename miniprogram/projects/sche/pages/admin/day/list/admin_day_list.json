@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"cmpt-comm-list": "/projects/sche/cmpts/list_day/comm_list_cmpt"
+	},
+	"navigationBarBackgroundColor": "#2499f2",
+	"navigationBarTextStyle": "white", 
+	"disableScroll": true, 
+	"navigationBarTitleText": "动态管理"
+}

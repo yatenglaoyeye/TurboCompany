@@ -1,0 +1,118 @@
+<view class="main {{skin.IS_SUB?'sub-margin-bottom':''}}">
+
+	<!--top area begin-->
+	<view class="upside upside-shadow" bindtap="url" data-url="{{user?'../edit/my_edit':'../reg/my_reg'}}">
+		<image mode="widthFix" lazy-load class="upImg loading" src="../../../images/my.png" />
+		<view class="user-bar">
+			<view class="detail">
+				<view class="name text-cut">
+					<text>{{user?user.USER_NAME:'欢迎回来~~~'}}</text>
+					<text wx:if="{{user}}" class="tag small radius bg-orange light margin-left-xs">{{user.USER_OBJ.dept}}</text>
+				 </view>
+				<view class="desc">
+					<view wx:if="{{user&&user.USER_STATUS==9}}" class="tag small radius bg-purple light">已禁用</view>
+					<view wx:elif="{{user&&user.USER_STATUS==0}}" class="tag small radius bg-orange light">已注册，待审核</view>
+					<view wx:elif="{{user&&user.USER_STATUS==8}}" class="tag small radius bg-red light">审核未通过，请修改资料</view>
+					<view wx:else class="text-cut">{{user?'欢迎回来~~~':'马上注册，使用预约功能'}}</view>
+				</view>
+			</view>
+			<view class="avatar">
+				<image wx:if="{{user.USER_PIC}}" mode="aspectFill" src="{{user.USER_PIC}}" />
+				<image wx:else mode="aspectFit" src="../../../images/tabbar/my_cur.png" style="width: 70rpx;height: 70rpx;border-radius: unset;" />
+			</view>
+		</view>
+	</view>
+	<!--top area end-->
+
+	<!--down area begin-->
+	<view class="down padding-project">
+		<view class="my-info" wx:if="{{user&&user.USER_NAME}}">
+			<view class="inner">
+				<view class="title text-blue">
+					<text><text class="icon-title"></text>我的今日动态</text>
+					<text>
+						<text class="text-blue" wx:if="{{myDay.DAY_TYPE==0}}">{{myDay.DAY_METHOD}}</text>
+						<text class="text-red" wx:elif="{{myDay.DAY_TYPE==1}}">出差</text>
+						<text class="text-green" wx:elif="{{myDay.DAY_TYPE==2}}">在公司</text>
+						<text class="text-orange" wx:elif="{{myDay.DAY_TYPE==9}}">其他</text>
+					</text>
+				</view>
+			 
+				<view wx:if="{{myDay && myDay.DAY_DATE}}" class="line">
+					<view wx:if="{{myDay.DAY_TYPE==0}}" class="desc margin-left-s">
+						<text>{{item.DAY_METHOD}}</text>
+					</view>
+
+					<view class="desc" wx:elif="{{myDay.DAY_TYPE==1}}">
+						<text class="icon-location text-grey margin-right-xxs"></text>{{myDay.DAY_AREA}}
+					</view>
+
+					<view class="desc">
+						<text class="padding-left-s">{{myDay.DAY_DESC||'无备注'}} </text>
+					</view>
+
+				</view>
+				<view wx:else class="desc margin-left">暂无填报</view>
+			</view>
+		</view>
+		<!--base begin -->
+		<view class="comm-list menu card-project shadow-project">
+			<view class="item arrow" bindtap="url" data-url="../../day/index/day_index">
+				<view class="content">
+					<text class="icon-time text-blue"></text>
+					<text class="text-black">我的所有动态</text>
+				</view>
+			</view>
+
+			<view wx:if="{{user&&user.USER_STATUS!=9}}" class="item arrow" bindtap="url" data-url="../edit/my_edit">
+				<view class="content">
+					<text class="icon-edit text-blue"></text>
+					<text class="text-black">修改我的个人资料</text>
+				</view>
+			</view> 
+
+			<view wx:if="{{!skin.IS_SUB}}" class="item arrow" bindtap="bindSetTap">
+				<view class="content">
+					<text class="icon-settings text-blue"></text>
+					<text class="text-black">设置</text>
+				</view>
+			</view>
+
+			<view class="item arrow" bindtap="url" data-url="../../about/index/about_index?key=SETUP_CONTENT_ABOUT">
+				<view class="content">
+					<text class="icon-service text-blue"></text>
+					<text class="text-black">关于我们</text>
+				</view>
+			</view>
+
+			<view wx:if="{{skin.IS_SUB}}" class="item arrow" bindtap="bindSetTap">
+				<view class="content">
+					<text class="icon-settings  text-blue"></text>
+					<text class="text-red text-bold ">系统后台管理<text class="text-grey text-normal">（点击使用）</text></text>
+				</view>
+			</view>
+
+			<view wx:if="{{skin.IS_SUB}}" class="item arrow" bindtap="url" data-url="/pages/home/about/home_about">
+				<view class="content">
+					<text class="icon-phone text-blue"></text>
+					<text class="text-orange">联系作者了解更多详情</text>
+				</view>
+			</view>
+
+		</view>
+		<!--sys end -->
+
+
+
+	</view>
+	<!--down area end-->
+
+</view>
+<view style="height:100rpx"></view>
+
+
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'my_index',returnHome:false}}" />
+</block>

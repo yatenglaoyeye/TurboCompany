@@ -1,0 +1,98 @@
+@import '../../../../../../style/public/admin.wxss';
+@import "../../../../../../style/base/table.wxss";
+
+.x-bottom {
+	position: fixed;
+	bottom: 50rpx;
+	z-index: 99999;
+	width: 100%;
+	text-align: center !important;
+	justify-content: center !important;
+}
+
+
+page {
+	background-color: #f8f8f8;
+}
+
+.admin-comm-list .item .info .oprt {
+	padding: 0rpx 0rpx;
+}
+
+.line1 {
+	width: 100%;
+	padding: 20rpx;
+	display: flex;
+	flex-direction: column;
+}
+
+.line1 .oprt {
+	width: 100%;
+	padding: 0rpx;
+	margin-bottom: 20rpx;
+}
+
+.line1 .search {
+	width: 100%;
+	padding: 20rpx 0;
+	display: flex;
+	align-items: center;
+}
+
+
+/* date */
+.search-date {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding: 0 20rpx;
+	flex-direction: column;
+}
+
+.search-date .date-title {
+	font-size: 28rpx;
+	margin-right: 8rpx;
+}
+
+.search-date .date-group {
+	width: 100%;
+	color: #888;
+	border: 1rpx solid #A4A6AE;
+	border-radius: 10rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5rpx 20rpx;
+	font-size: 29rpx;
+	height: 60rpx;
+}
+
+.search-date .text-line1 {
+	color: #A4A6AE;
+	margin: 0 18rpx;
+}
+
+.search-date .text-line2 {
+	color: rgb(0, 0, 0, 0.8);
+}
+
+.search-date .search-date-picker {
+	flex: 1;
+	text-align: center;
+}
+
+.tbody .tr.border .td {
+	font-size: 24rpx;
+}
+
+.tbody .tr.border .td.detail>view {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.tbody .tr.border .td.detail>view>text {
+	width: 100%;
+	text-align: left;
+}
